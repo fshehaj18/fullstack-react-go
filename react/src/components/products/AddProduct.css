@@ -1,0 +1,15 @@
+.product-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 30em;
+    height: 35em;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.5em;
+    flex: 1;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: 0 0 .144em 1.144em rgb(10, 156 , 156);
+
+}

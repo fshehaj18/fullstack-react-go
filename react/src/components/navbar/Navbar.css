@@ -1,0 +1,40 @@
+* {
+    /* position: static; */
+    list-style: none;
+}
+
+nav {
+    background-color: rgb(21, 150, 215);
+    width: 100%;
+    height: 80px;
+    margin-bottom: 15px;
+    /* top: 0; */
+    margin-top: 0px;
+}
+
+nav li {
+    float: right;
+    margin: 0 5px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 20px;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.cart-value{
+    position: absolute;
+     top: 8px;
+    display: flex;
+    left: 530px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    padding: 0 5px;
+    pointer-events: none; 
+    color: white;
+}

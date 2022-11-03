@@ -1,0 +1,11 @@
+export const SET_DATA = 'SET_DATA';
+export const ADD_PRODUCT = 'CREATE_PRODUCT';
+export const DELETE_PRODUCTS = 'DELETE_PRODUCT';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
+export const SET_PRODUCTS = 'SET_DATA';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const CLEAR = 'CLEAR';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const CHANGE = 'CHANGE';
+export const ORDER = 'ORDER';
+export const BASE_URL = 'http://localhost:3000/products';

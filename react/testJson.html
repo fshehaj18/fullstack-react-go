@@ -1,0 +1,17 @@
+
+<script>
+const handleSaveToPC = () => {
+    const fileData = JSON.stringify({name: "Fridi", sname: "Shehaj"});
+    const blob = new Blob([fileData], {type: "text/plain"});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = `awnfeqi.json`;
+    link.href = url;
+    console.log(url);
+    link.click();
+  }
+
+
+</script>
+
+  <button onClick={handleSaveToPC}>download</button>
