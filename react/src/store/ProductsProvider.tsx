@@ -11,6 +11,7 @@ import {
 } from "./constants";
 import { ProductState } from "./ProductState";
 import { productReducer } from "./ProductReducer";
+import { Card } from "../typings/Card";
 
 type Props = {
   children?: React.ReactNode;
@@ -39,8 +40,8 @@ export const ProductsProvider = ({ children }: Props) => {
   function deleteProduct(id: number) {
     dispatch({ type: DELETE_PRODUCTS, deleteProductId: id });
   }
-  function order(products: Product[]){
-    dispatch({ type: ORDER, products: products});
+  function order(card: Card){
+    dispatch({ type: ORDER, products: card});
   }
   const value1 = {
     addProduct: addProduct,

@@ -21,6 +21,16 @@ export function productReducer(state: ProductState, action: ProductAction): Prod
     }
 
     case ORDER: {
+      // var foundIndex = items.findIndex(x => x.id == item.id);
+      // items[foundIndex] = item;
+
+      action.products.products.forEach((element, index) => {
+        var foundIndex = state.products.findIndex(x => x.id == element.id);
+        console.log(state.products[foundIndex]);
+        
+        state.products[foundIndex].quantity -= element.quantity;
+      });
+      return state;
       
     }
     default: {

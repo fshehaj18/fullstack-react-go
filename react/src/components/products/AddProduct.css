@@ -10,6 +10,24 @@
     flex: 1;
     margin: auto;
     margin-top: 10px;
-    box-shadow: 0 0 .144em 1.144em rgb(10, 156 , 156);
+    border-radius: 0.5em;
+    box-shadow: 0 0.05em 1.144em #e9ecef;
+}
 
+.btn {
+    -webkit-box-shadow: 0px 10px 13px -7px #707070, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 0px 10px 13px -7px #707070, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+form {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px;
+    padding: 20px;
+}
+
+.form-control {
+    
+    border: none;
+    border-bottom: 1px solid gray;
 }

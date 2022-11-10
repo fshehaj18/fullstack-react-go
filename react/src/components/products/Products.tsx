@@ -1,6 +1,14 @@
-import axios from "axios";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
-import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Form,
+  FormControl,
+  FormText,
+  Row,
+} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +18,13 @@ import { ProductContext } from "../../store/ProductsProvider";
 import { Product } from "../../typings/Product";
 import Navbar from "../navbar/Navbar";
 import "./productStyle.css";
+
 const Products = () => {
   const [products, setProducts] = useState<any[]>([]);
   const prod = useContext(ProductContext);
   const card = useContext(CardContext);
   const [textInput, setTextInput] = useState("");
+  const [priceInput, setPriceInput] = useState<number>(100);
   const [option, setOption] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
@@ -43,8 +53,10 @@ const Products = () => {
         })
       );
     }
-    setProducts(prod.products.filter((p: any) => p.name.includes(textInput)));
-  }, [prod.products, textInput, option]);
+    setProducts(prod.products.filter((p: any) => p.name.includes(textInput))
+    .filter((p: any) => p.price < priceInput));
+    console.log(products);
+  }, [prod.products, textInput, option, priceInput]);
   const deleteHandler = async (id: number) => {
     await fetch(BASE_URL + `/${id}`, { method: "DELETE" });
     prod.deleteProduct(id);
@@ -73,82 +85,110 @@ const Products = () => {
   };
   return (
     <>
-      <Navbar />
-      <Container>
-        <Row>
-          <Col sm={2} >
-            <Row mb={10} md={4} lg={6} style={{marginBottom: "12px"}}>
-              <Form.Select
-                onChange={sortByPriceAscending}
-                aria-label="Default select example"
-              >
-                <option value="1">Low to High</option>
-                <option value="2">High to Low</option>
-                <option value="3">A to Z</option>
-              </Form.Select>
-            </Row>
-            <Row mt={2} >
-              <Form className="d-flex" onSubmit={search}>
+      <Navbar /> 
+      <Row className="top">
+        <h1>Products  </h1>
+      </Row>
+      <Container >
+       
+        <Row> 
+          <Col xs={2}>
+            <Button variant="success" size="lg" style={{backgroundColor: '#20bf55', border: 'none'}} onClick={() => navigate("./new-product")} >
+              Add product
+            </Button>
+          </Col>
+          <Col sm={2} xs={6} style={{ marginBottom: "12px" }}>
+            <Form.Select
+              onChange={sortByPriceAscending}
+              aria-label="Default select example"
+            >
+              <option value="1">Low to High</option>
+              <option value="2">High to Low</option>
+              <option value="3">A to Z</option>
+            </Form.Select>
+          </Col>
+          <Col style={{ marginBottom: "12px"   }}>
+            <div>
+            <Form onSubmit={search}>
+              <div style={{ zIndex: 10, maxWidth: '45%', }}>
                 <FormControl
                   type="text"
                   placeholder="Search"
                   className="mr-sm-2"
                   onChange={search}
                 />
-                <Button style={{marginLeft: "10px"}} variant="success" type="submit">
-                  Search
-                </Button>
+              </div>
               </Form>
-            </Row>
+              <div style={{ zIndex: 15, margin: 0,  position: "absolute", top: 185, right: 880}}>
+                <FontAwesomeIcon
+                 
+                  icon={faSearch}
+                />
+              </div>
+              </div>
+            
           </Col>
           <Col>
-            <Container>
-              <Button
-                variant="primary"
-                onClick={() => navigate("./new-product")}
-             >
-                Add new product
-              </Button>
-              <Row  style={{marginTop: "6px"}}>
-                {products.map((p: any) => (
-                  <Col className="mr-6" style={{marginTop: "10px"}}>
-                    <Card style={{marginTop: "10px", width: "15rem" }}>
-                      <Card.Img
-                        style={{
-                          width: "40%",
-                          height: "10vw",
-                          objectFit: "cover",
-                          alignItems: "center",
-                          marginLeft: "65px",
-                        }}
-                        variant="top"
-                        src={p.image}
-                        width="1px"
-                        height="120px"
-                      />
-                      <Card.Body>
-                        <Card.Title>{p.name}</Card.Title>
-                        <Card.Text>{p.desc}</Card.Text>
-                        <Card.Text>
-                          <strong>{p.price} cent</strong>
-                        </Card.Text>
-                        <div className="flexButtons">
-                          <div className="pl-5">
-                            <Button variant="info" onClick={() => addToCart(p)}>
-                              Add
-                            </Button>
-                          </div>
-                          <div className="pr-1"></div>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-            </Container>
+            <Form.Label>Price</Form.Label>
+            <Form.Range
+              defaultValue={500}
+              onChange={(e) => setPriceInput(Number(e.target.value))}
+            />
           </Col>
+         
         </Row>
       </Container>
+      <Row>
+        <Container>
+          <Row style={{ marginTop: "6px" }}>
+            {products.map((p: any) => (
+              <Col className="mr-6" style={{ marginTop: "10px" }}>
+                <Card
+                  style={{
+                    marginTop: "10px",
+                    width: "15rem",
+                    marginBottom: "10px",
+                    overflow: "hidden",
+                  }}
+                  className="card-img-wrap"
+                >
+                  <Card.Img
+                    style={{
+                      width: "40%",
+                      height: "10vw",
+                      objectFit: "cover",
+                      alignItems: "center",
+                      marginLeft: "65px",
+                    }}
+                    variant="top"
+                    src={p.image}
+                    width="1px"
+                    height="120px"
+                    className="hover-zoom"
+                  />
+                  <Card.Body>
+                    <Card.Title>
+                      <h4>{p.name} </h4>
+                    </Card.Title>
+                    <Card.Text>{p.desc}</Card.Text>
+                    <Card.Text>
+                      <strong>{p.price / 100}$ </strong>
+                    </Card.Text>
+                    <div className="flexButtons">
+                      <div className="pl-5" style={{ overflow: "visible" }}>
+                        <Button variant= "warning" style={{backgroundColor: '#ff9e00', color: '#fff'}} onClick={() => addToCart(p)}>
+                          Add
+                        </Button>
+                      </div>
+                      <div className="pr-1"></div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </Row>
     </>
   );
 };

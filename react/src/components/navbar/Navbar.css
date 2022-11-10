@@ -1,5 +1,5 @@
 * {
-    /* position: static; */
+    position: static;
     list-style: none;
 }
 
@@ -28,13 +28,21 @@ nav ul li a {
 
 .cart-value{
     position: absolute;
-     top: 8px;
+     top: 12px;
+     left: 384px;
     display: flex;
-    left: 530px;
     justify-content: center;
-    align-items: center;
+    width: 17px;
+    height: 17px;
+    background-color:  #ff0068;
+    
     font-size: 18px;
     padding: 0 5px;
     pointer-events: none; 
-    color: white;
+    color: #fff;
+    border-radius: 50%;
+    margin: 4px;
+    z-index: 999;
+    font-weight: bold;text-align:end;
+    /* background-color: #e62129; */
 }
