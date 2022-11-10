@@ -23,7 +23,6 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route element={<PrivateRoute />}>
           <Route
             path="*"
             element={
@@ -36,7 +35,6 @@ function App() {
           <Route path="/new-product" element={<AddProduct />} />
           <Route path="/users" element={<UsersList />} />
           <Route path="/card" element={<Checkout />} />
-        </Route>
       </Routes>
     </>
   );
