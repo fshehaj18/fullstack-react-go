@@ -142,7 +142,7 @@ const Products = () => {
         <Container>
           <Row style={{ marginTop: "6px" }}>
             {products.map((p: any) => (
-              <Col className="mr-6" style={{ marginTop: "10px" }}>
+              <Col className="mr-6" style={{ marginTop: "10px" }} md={3}>
                 <Card
                   style={{
                     marginTop: "10px",
