@@ -8,6 +8,7 @@ import AddProduct from "./components/products/AddProduct";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Checkout from "./components/checkout/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
+import Invoices from "./components/sales/Invoices";
 import UsersList from "./components/users/UsersList";
 function App() {
   const [showCard, setShowCard] = useState(false);
